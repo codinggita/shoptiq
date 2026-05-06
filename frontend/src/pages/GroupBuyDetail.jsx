@@ -87,10 +87,31 @@ const GroupBuyDetail = () => {
           </div>
 
           <div className="gbd-action-area">
-             <div className="gbd-qty-selector">
-                <label>Units to commit:</label>
-                <input type="number" defaultValue={1} min={1} max={50} />
+             <div className="gbd-milestones">
+                <div className="m-step done">₹14,500 <span>Tier 1</span></div>
+                <div className="m-step active">₹12,500 <span>Current</span></div>
+                <div className="m-step next">₹9,999 <span>Goal</span></div>
              </div>
+
+             <div className="gbd-qty-selector">
+                <div className="qty-label-row">
+                   <label>Units to commit:</label>
+                   <span className="qty-val">1 Unit</span>
+                </div>
+                <input type="range" min={1} max={50} defaultValue={1} className="gb-slider" />
+             </div>
+
+             <div className="savings-simulator-card">
+                <div className="sim-row">
+                   <span>Projected Savings</span>
+                   <strong className="green">₹6,000</strong>
+                </div>
+                <div className="sim-row">
+                   <span>Pool Progress Impact</span>
+                   <strong className="blue">+1.2%</strong>
+                </div>
+             </div>
+
              <button className={`btn-join-pool-massive ${joined ? 'joined' : ''}`} onClick={handleJoin} disabled={joined}>
                {joined ? 'You are in this pool!' : 'Commit & Join Pool'}
              </button>
@@ -101,7 +122,15 @@ const GroupBuyDetail = () => {
         {/* Chat / Discussion Column */}
         <div className="gbd-chat-card">
           <div className="chat-header">
-             <h2>Pool Discussion</h2>
+             <div>
+                <h2>Pool Discussion</h2>
+                <div className="participant-avatars">
+                   <img src="https://i.pravatar.cc/150?u=a" alt="p1" />
+                   <img src="https://i.pravatar.cc/150?u=b" alt="p2" />
+                   <img src="https://i.pravatar.cc/150?u=c" alt="p3" />
+                   <span className="p-count">+42 others</span>
+                </div>
+             </div>
              <span className="live-viewers"><span className="red-dot"></span> 12 Online</span>
           </div>
 

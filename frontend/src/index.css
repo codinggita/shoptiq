@@ -72,11 +72,19 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Outfit', sans-serif;
   color: var(--text-main);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 button {
@@ -193,12 +201,9 @@ a {
   background: var(--bg-main);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 860px) {
   .app-body-layout.with-sidebar {
     flex-direction: column;
-  }
-  .app-sidebar-hub {
-    display: none; /* Hide sidebar on mobile, link items to Navbar or use a drawer */
   }
 }
 

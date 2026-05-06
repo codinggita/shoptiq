@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 import './Navbar.css';
 
-const Navbar = ({ onLogout, cartCount = 0 }) => {
+const Navbar = ({ onLogout, cartCount = 0, isMobileMenuOpen, setIsMobileMenuOpen }) => {
   const [query, setQuery] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
@@ -27,9 +28,31 @@ const Navbar = ({ onLogout, cartCount = 0 }) => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <Link to="/dashboard" className="navbar-brand">
-          Shoptiq
-        </Link>
+        <div className="navbar-brand-group">
+          <button 
+            className="mobile-menu-toggle"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <motion.line 
+                x1="3" y1="6" x2="21" y2="6" 
+                animate={isMobileMenuOpen ? { x1: 18, y1: 6, x2: 6, y2: 18 } : { x1: 3, y1: 6, x2: 21, y2: 6 }}
+              />
+              <motion.line 
+                x1="3" y1="12" x2="21" y2="12" 
+                animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+              />
+              <motion.line 
+                x1="3" y1="18" x2="21" y2="18" 
+                animate={isMobileMenuOpen ? { x1: 6, y1: 6, x2: 18, y2: 18 } : { x1: 3, y1: 18, x2: 21, y2: 18 }}
+              />
+            </svg>
+          </button>
+          <Link to="/dashboard" className="navbar-brand">
+            Shoptiq
+          </Link>
+        </div>
 
         {/* Desktop Links */}
         <div className="navbar-links">

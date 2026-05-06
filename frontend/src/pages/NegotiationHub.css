@@ -494,3 +494,19 @@
   font-weight: 800;
   color: #065f46;
 }
+
+@media (max-width: 1024px) {
+  .neg-hub-layout { grid-template-columns: 1fr; }
+  .active-deals-panel { order: 2; }
+  .negotiation-main-panel { order: 1; }
+}
+
+@media (max-width: 768px) {
+  .neg-hub-root { padding: 1rem; }
+  .neg-hub-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .product-detail-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  .market-price-box { text-align: left; }
+  .offer-comparison-grid { grid-template-columns: 1fr; }
+  .neg-action-row { grid-template-columns: 1fr; }
+  .s-metrics-grid { grid-template-columns: 1fr; }
+}

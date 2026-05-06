@@ -145,6 +145,25 @@ const ProductDetail = ({ onNegotiate, onNavigate }) => {
             </div>
           </div>
 
+          {/* AI Price sense */}
+          <div className="ai-price-predictor animate-fade-in">
+             <div className="predictor-header">
+                <div className="p-badge">AI SENSE</div>
+                <strong>Price Protection Active</strong>
+             </div>
+             <div className="predictor-body">
+                <div className="p-trend-chart">
+                   <svg width="60" height="30" viewBox="0 0 60 30">
+                      <path d="M0 25 Q 15 20, 30 10 T 60 5" fill="none" stroke="#10b981" strokeWidth="3" />
+                   </svg>
+                </div>
+                <div className="p-insight">
+                   <strong>Buy Now Recommendation</strong>
+                   <p>Current price is 12% lower than the 30-day average. AI predicts a ₹450 increase next week.</p>
+                </div>
+             </div>
+          </div>
+
           <div className="purchase-actions">
             <button className="btn-add-cart" onClick={(e) => {
               e.stopPropagation();
@@ -163,6 +182,29 @@ const ProductDetail = ({ onNegotiate, onNavigate }) => {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
               MAKE AN OFFER
             </button>
+          </div>
+
+          {/* Frequently Bundled */}
+          <div className="bundle-box-pd">
+             <h3>Frequently Bundled</h3>
+             <div className="bundle-row">
+                <div className="bundle-item">
+                   <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200&q=80" alt="Accessory" />
+                   <div className="b-info">
+                      <strong>Urban Case Pro</strong>
+                      <span>₹1,240</span>
+                   </div>
+                </div>
+                <div className="plus-sign">+</div>
+                <div className="bundle-item">
+                   <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=200&q=80" alt="Accessory" />
+                   <div className="b-info">
+                      <strong>MagSafe Sync</strong>
+                      <span>₹850</span>
+                   </div>
+                </div>
+             </div>
+             <button className="btn-bundle-save">Bundle & Save ₹400</button>
           </div>
 
           <div className="bank-offers-pd">

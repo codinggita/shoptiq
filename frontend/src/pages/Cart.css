@@ -111,8 +111,22 @@
   .cart-container { grid-template-columns: 1fr; }
   .cart-sidebar { position: static; }
 }
+
 @media (max-width: 768px) {
-  .cart-item-card { flex-direction: column; }
+  .cart-root { padding: 2rem 1rem; }
+  .cart-title { font-size: 2rem; }
+  .shipping-status-pill { position: static; margin-bottom: 2rem; width: fit-content; }
+  .cart-item-card { flex-direction: column; gap: 1.5rem; padding: 1.5rem; }
   .item-img-area { width: 100%; height: 200px; }
-  .shipping-status-pill { position: static; margin-bottom: 2rem; }
+  .item-info-top { flex-direction: column; gap: 1rem; }
+  .item-price-area { text-align: left; }
+  .item-actions-row { flex-direction: column; gap: 1.5rem; align-items: stretch; }
+  .qty-controls { justify-content: center; }
+  .item-meta-badges { justify-content: space-between; }
+  .group-buy-alert { flex-direction: column; gap: 1rem; text-align: center; }
+  .alert-content { flex-direction: column; text-align: center; }
+  .negotiation-cta-card { flex-direction: column; gap: 1.5rem; text-align: center; }
+  .savings-summary-card { padding: 1.5rem; border-radius: 20px; }
+  .total-saved-pill { padding: 1rem; }
+  .total-value { font-size: 1.75rem; }
 }

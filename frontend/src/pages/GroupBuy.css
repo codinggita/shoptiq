@@ -144,3 +144,17 @@
   .gb-hero-grid, .gb-bottom-grid { grid-template-columns: 1fr; }
   .savings-hub-card { position: static; }
 }
+
+@media (max-width: 768px) {
+  .groupbuy-root { padding: 2rem 1rem; }
+  .gb-hero-main { padding: 2.5rem; border-radius: 24px; }
+  .gb-hero-main .hero-title { font-size: 2.25rem; }
+  .gb-hero-main .hero-sub { font-size: 1rem; margin-bottom: 2rem; }
+  .btn-primary-hub, .btn-outline-hub { width: 100%; margin-left: 0; margin-bottom: 1rem; }
+  .btn-outline-hub { margin-bottom: 0; }
+  .section-header-hub { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .section-header-hub h2 { font-size: 1.75rem; }
+  .pools-grid-hub { grid-template-columns: 1fr; }
+  .upcoming-buys-hub, .how-tiers-hub { padding: 1.5rem; border-radius: 24px; }
+  .card-header-pro h3 { font-size: 1.25rem; }
+}

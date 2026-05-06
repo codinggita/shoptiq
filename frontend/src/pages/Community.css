@@ -251,7 +251,10 @@
 }
 
 @media (max-width: 768px) {
+  .community-root { padding: 2rem 1rem; }
   .community-title { font-size: 2.25rem; }
   .comparison-images-hub { height: 180px; }
   .comparison-card-pro { border-radius: 20px; }
+  .filter-row-pro { gap: 0.5rem; }
+  .filter-pill-pro { padding: 0.5rem 1rem; font-size: 0.8rem; }
 }

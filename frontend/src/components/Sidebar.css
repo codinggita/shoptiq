@@ -7,6 +7,15 @@
   flex-direction: column;
   padding: 2.5rem 0;
   flex-shrink: 0;
+  z-index: 1001;
+}
+
+.sidebar-mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
 }
 
 .sidebar-header-hub-top {
@@ -29,6 +38,7 @@
   transition: var(--transition);
   font-weight: 700;
   font-size: 0.95rem;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .sidebar-nav-item:hover { color: var(--primary); background: var(--bg-main); }
@@ -66,9 +76,37 @@
 }
 
 @media (max-width: 1024px) {
-  .app-sidebar-hub { width: 80px; padding: 2.5rem 0.5rem; align-items: center; }
+  .app-sidebar-hub { 
+    width: 80px; 
+    padding: 2.5rem 0.5rem; 
+    align-items: center; 
+  }
   .sidebar-header-hub-top, .item-label { display: none; }
   .active-curve { left: -0.5rem; }
+}
+
+@media (max-width: 860px) {
+  .app-sidebar-hub {
+    position: fixed;
+    top: 70px;
+    bottom: 0;
+    left: 0;
+    width: 280px;
+    align-items: stretch;
+    padding: 2rem 0;
+  }
+
+  .app-sidebar-hub.mobile-open {
+    box-shadow: var(--shadow-xl);
+  }
+
+  .sidebar-header-hub-top, .item-label { 
+    display: block; 
+  }
+  
+  .sidebar-nav-item {
+    padding: 1rem 2rem;
+  }
 }
 
 .service-sidebar-btn {

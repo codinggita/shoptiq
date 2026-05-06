@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
 import { addToCart } from '../store/cartSlice';
 import { toast } from 'react-toastify';
 import axios from 'axios';
@@ -110,14 +111,16 @@ const SearchResults = ({ query }) => {
         ) : (
           <div className="products-grid-results">
             {products.map((product) => (
-              <div 
+              <motion.div 
                 key={product.id} 
-                className="product-card-res animate-slide-in-3d" 
+                className="product-card-res" 
                 onClick={() => navigate(`/product/${product.id}`)}
                 style={{ cursor: 'pointer' }}
+                whileHover={{ y: -5 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <div className="res-img-wrap">
-                  <img src={product.thumbnail} alt={product.title} />
+                  <img src={product.thumbnail} alt={product.title} loading="lazy" />
                   {product.discountPercentage > 10 && (
                     <span className="res-badge blue">{Math.round(product.discountPercentage)}% OFF</span>
                   )}
@@ -143,7 +146,7 @@ const SearchResults = ({ query }) => {
                     toast.success(`${product.title} added to cart!`);
                   }}>Add to Cart</button>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         )}

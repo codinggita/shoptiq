@@ -219,3 +219,22 @@
   opacity: 0.7;
   cursor: not-allowed;
 }
+
+@media (max-width: 768px) {
+  .add-modal-header { padding: 1rem 1.5rem; }
+  .add-modal-header h2 { font-size: 1.25rem; }
+  .add-product-form { padding: 1.5rem; gap: 1.25rem; }
+  .form-row.split { grid-template-columns: 1fr; gap: 1.25rem; }
+  .form-actions { flex-direction: column; gap: 1rem; }
+  .btn-submit, .btn-cancel { width: 100%; }
+}
+
+@media (min-width: 1024px) {
+  .add-modal-content {
+    height: auto;
+    max-height: 90vh;
+    max-width: 800px;
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+}

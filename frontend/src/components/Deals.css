@@ -472,23 +472,34 @@
 }
 
 /* ── Responsive ── */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+  .deals-sidebar { width: 240px; }
+  .chat-messages { padding: 1.5rem; }
+}
+
+@media (max-width: 860px) {
+  .deals-container { height: calc(100vh - 70px); }
   .deals-sidebar { width: 220px; }
+  .chat-header { padding: 0.75rem 1rem; }
+  .chat-messages { padding: 1.25rem 1rem; }
   .chat-msg { max-width: 85%; }
 }
 
-@media (max-width: 600px) {
-  .deals-container { flex-direction: column; height: auto; }
+@media (max-width: 640px) {
+  .deals-container { flex-direction: column; height: auto; overflow: visible; }
   .deals-sidebar {
     width: 100%;
-    max-height: 250px;
+    height: 300px;
+    flex-shrink: 0;
     border-right: none;
     border-bottom: 1px solid #e2e8f0;
   }
-  .deals-chat { min-height: 400px; }
-  .chat-header { flex-wrap: wrap; }
-  .create-quote-btn { width: 100%; text-align: center; }
+  .deals-chat { height: 500px; }
+  .chat-header { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+  .chat-product { justify-content: space-between; }
+  .create-quote-btn { width: 100%; }
   .chat-messages { padding: 1rem; }
   .chat-msg { max-width: 90%; }
   .deals-user-profile { display: none; }
+  .chat-shortcuts { display: none; }
 }

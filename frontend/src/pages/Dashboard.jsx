@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
 import { addToCart } from '../store/cartSlice';
 import { toast } from 'react-toastify';
 import api from '../services/api';
@@ -41,6 +42,11 @@ const Dashboard = () => {
     fetchDummyProducts();
   }, []);
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
     <div className="dashboard-root animate-fade-in">
       <section className="hero-banner-pro animate-slide-in-3d">
@@ -56,12 +62,35 @@ const Dashboard = () => {
             <button className="btn-blur" onClick={() => navigate('/orders')}>Active Orders</button>
           </div>
         </div>
-        <div className="hero-metric-pro animate-float-3d">
-          <div className="m-label">TOTAL REVENUE (MTD)</div>
-          <div className="m-value">₹8,42,900</div>
-          <div className="m-trend">↑ 12.5% from last month</div>
+        
+        <div className="hero-metrics-stack">
+          <div className="hero-metric-pro animate-float-3d">
+            <div className="m-label">TOTAL REVENUE (MTD)</div>
+            <div className="m-value">₹8,42,900</div>
+            <div className="m-trend">↑ 12.5% from last month</div>
+          </div>
+          <div className="hero-metric-pro glass animate-float-3d" style={{ animationDelay: '0.2s' }}>
+            <div className="m-label">ACTIVE NEGOTIATIONS</div>
+            <div className="m-value">42</div>
+            <div className="m-trend">12 Urgent • 5 Completed</div>
+          </div>
         </div>
       </section>
+
+      {/* Live Activity Ticker */}
+      <div className="live-ticker-wrap">
+        <div className="ticker-label">LIVE FEED</div>
+        <div className="ticker-content">
+          <div className="ticker-track">
+            <span>🚀 NEW BID: ₹1,42,000 on MacBook Pro Hub</span>
+            <span>🔥 GROUP BUY: 92% Complete for "Urban Tech Pack"</span>
+            <span>📦 SHIPPED: Order #STQ-2910 cleared Mumbai Hub</span>
+            <span>✨ AI SYNC: 124 products optimized for AR Try-On</span>
+            <span>🚀 NEW BID: ₹1,42,000 on MacBook Pro Hub</span>
+            <span>🔥 GROUP BUY: 92% Complete for "Urban Tech Pack"</span>
+          </div>
+        </div>
+      </div>
 
       <div className="dashboard-main-grid stagger-items">
         <section className="dashboard-card-section">
@@ -71,7 +100,12 @@ const Dashboard = () => {
           </div>
           <div className="neg-stack-pro">
             {NEGOTIATIONS.map((neg) => (
-              <div key={neg.id} className="neg-item-pro">
+              <motion.div 
+                key={neg.id} 
+                className="neg-item-pro"
+                whileHover={{ x: 5 }}
+                whileTap={{ scale: 0.99 }}
+              >
                 <div className="neg-info">
                   <strong>{neg.name}</strong>
                   <p>Asking: ₹{neg.asking.toLocaleString()} • Bid: <span className="blue">₹{neg.bid.toLocaleString()}</span></p>
@@ -80,7 +114,7 @@ const Dashboard = () => {
                    <span className={`status-tag ${neg.type}`}>{neg.status}</span>
                    <button className="btn-manage-pro" onClick={() => navigate('/negotiation')}>MANAGE</button>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>
@@ -92,7 +126,13 @@ const Dashboard = () => {
           </div>
           <div className="gb-stack-pro">
             {GROUP_BUYS.map((pool) => (
-              <div key={pool.id} className="gb-item-pro" onClick={() => navigate(`/groupbuy/${pool.id}`)}>
+              <motion.div 
+                key={pool.id} 
+                className="gb-item-pro" 
+                onClick={() => navigate(`/groupbuy/${pool.id}`)}
+                whileHover={{ y: -3 }}
+                whileTap={{ scale: 0.98 }}
+              >
                 <div className="gb-img-mini" style={{ backgroundImage: `url(${pool.img})` }}>
                   <span className="gb-discount-pro">{pool.discount}</span>
                 </div>
@@ -103,7 +143,7 @@ const Dashboard = () => {
                   </div>
                   <p>{pool.backers} backers • {pool.needed} more needed</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>
@@ -123,9 +163,15 @@ const Dashboard = () => {
 
         <div className="precision-grid-pro stagger-items">
           {localProducts.map((product) => (
-            <div key={product.id} className="p-card-pro animate-fade-in" onClick={() => navigate(`/product/${product.id}`)}>
+            <motion.div 
+              key={product.id} 
+              className="p-card-pro" 
+              onClick={() => navigate(`/product/${product.id}`)}
+              whileHover={{ y: -8 }}
+              whileTap={{ scale: 0.98 }}
+            >
               <div className="p-img-pro">
-                <img src={product.image || product.img} alt={product.name} />
+                <img src={product.image || product.img} alt={product.name} loading="lazy" />
                 <span className="p-stock-pro in-stock">NEW ASSET</span>
                 <button className="p-add-pro" onClick={(e) => { 
                    e.stopPropagation(); 
@@ -151,13 +197,19 @@ const Dashboard = () => {
                    <span className="p-offer-pro">LOCAL SYNC</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
 
           {dummyProducts.map((product) => (
-            <div key={product.id} className="p-card-pro animate-slide-in-3d" onClick={() => navigate(`/product/${product.id}`)}>
+            <motion.div 
+              key={product.id} 
+              className="p-card-pro" 
+              onClick={() => navigate(`/product/${product.id}`)}
+              whileHover={{ y: -8 }}
+              whileTap={{ scale: 0.98 }}
+            >
               <div className="p-img-pro">
-                <img src={product.thumbnail} alt={product.title} />
+                <img src={product.thumbnail} alt={product.title} loading="lazy" />
                 <span className={`p-stock-pro ${product.stock > 0 ? 'in-stock' : 'out-of-stock'}`}>{product.stock > 0 ? 'IN STOCK' : 'OUT OF STOCK'}</span>
                 <button className="p-add-pro" onClick={(e) => { 
                    e.stopPropagation(); 
@@ -188,13 +240,19 @@ const Dashboard = () => {
                    <span className="p-offer-pro">{Math.round(product.discountPercentage)}% OFF</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
           {/* Render Products fetched from MongoDB */}
           {dbProducts.map((product) => (
-            <div key={product._id} className="p-card-pro" onClick={() => navigate(`/product/${product._id}`)}>
+            <motion.div 
+              key={product._id} 
+              className="p-card-pro" 
+              onClick={() => navigate(`/product/${product._id}`)}
+              whileHover={{ y: -8 }}
+              whileTap={{ scale: 0.98 }}
+            >
               <div className="p-img-pro">
-                <img src={product.image || product.img || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80'} alt={product.name} />
+                <img src={product.image || product.img || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80'} alt={product.name} loading="lazy" />
                 <span className={`p-stock-pro in-stock`}>IN STOCK</span>
                 <button className="p-add-pro" onClick={(e) => { 
                    e.stopPropagation(); 
@@ -220,16 +278,20 @@ const Dashboard = () => {
                    <span className="p-offer-pro">NEW</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
 
       {/* FAB Assistant */}
-      <div className="fab-pro">
+      <motion.div 
+        className="fab-pro"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
          <span>Assistant</span>
-      </div>
+      </motion.div>
     </div>
   );
 };

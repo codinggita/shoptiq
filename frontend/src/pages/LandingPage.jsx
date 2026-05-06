@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { SEO } from '../components/SEO';
 import './LandingPage.css';
 
 const LandingPage = () => {
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div className="landing-root">
@@ -16,7 +18,8 @@ const LandingPage = () => {
       <header className="landing-header">
         <div className="landing-nav">
           <div className="nav-logo">SHOPTIQ</div>
-          <nav className="nav-links" aria-label="Primary navigation">
+          
+          <nav className="nav-links desktop-only" aria-label="Primary navigation">
             {['Platform', 'Solutions', 'Inventory', 'AR Try-On', 'Pricing'].map((link) => (
               <a
                 key={link}
@@ -27,7 +30,8 @@ const LandingPage = () => {
               </a>
             ))}
           </nav>
-          <div className="nav-actions">
+
+          <div className="nav-actions desktop-only">
             <button className="btn-link" onClick={() => navigate('/login')}>
               Login
             </button>
@@ -35,7 +39,70 @@ const LandingPage = () => {
               Sign Up
             </button>
           </div>
+
+          <button 
+            className="landing-mobile-toggle"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <motion.line 
+                x1="3" y1="6" x2="21" y2="6" 
+                animate={isMenuOpen ? { x1: 18, y1: 6, x2: 6, y2: 18 } : { x1: 3, y1: 6, x2: 21, y2: 6 }}
+              />
+              <motion.line 
+                x1="3" y1="12" x2="21" y2="12" 
+                animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+              />
+              <motion.line 
+                x1="3" y1="18" x2="21" y2="18" 
+                animate={isMenuOpen ? { x1: 6, y1: 6, x2: 18, y2: 18 } : { x1: 3, y1: 18, x2: 21, y2: 18 }}
+              />
+            </svg>
+          </button>
         </div>
+
+        <AnimatePresence>
+          {isMenuOpen && (
+            <>
+              <motion.div 
+                className="landing-mobile-overlay"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsMenuOpen(false)}
+              />
+              <motion.div 
+                className="landing-mobile-menu"
+                initial={{ x: '100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '100%' }}
+                transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              >
+                <nav className="mobile-nav-links">
+                  {['Platform', 'Solutions', 'Inventory', 'AR Try-On', 'Pricing'].map((link) => (
+                    <a
+                      key={link}
+                      href={`#${link.toLowerCase().replace(' ', '-')}`}
+                      className="mobile-nav-link"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {link}
+                    </a>
+                  ))}
+                </nav>
+                <div className="mobile-nav-actions">
+                  <button className="btn-secondary" onClick={() => navigate('/login')}>
+                    Login
+                  </button>
+                  <button className="btn-primary" onClick={() => navigate('/signup')}>
+                    Sign Up
+                  </button>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
       </header>
 
       <main>
@@ -53,6 +120,15 @@ const LandingPage = () => {
               <button className="btn-secondary" onClick={() => alert('Loading Live Demo Environment... Connecting to edge node 4.2...')}>
                 View Live Demo
               </button>
+            </div>
+            
+            <div className="live-node-ticker">
+               <span className="node-dot"></span>
+               <div className="node-track">
+                  <span>EDGE-NODE 4.2-HK : CONNECTED</span>
+                  <span>LATENCY : 12ms</span>
+                  <span>SYNC : OPTIMAL</span>
+               </div>
             </div>
           </div>
           <div className="hero-visual">
@@ -72,6 +148,21 @@ const LandingPage = () => {
               </div>
             </div>
           </div>
+        </section>
+
+        <section className="global-ops-grid">
+           <div className="ops-card">
+              <strong>1.2B+</strong>
+              <span>Transactions Synced</span>
+           </div>
+           <div className="ops-card">
+              <strong>4.2k</strong>
+              <span>Enterprise Hubs</span>
+           </div>
+           <div className="ops-card">
+              <strong>99.8%</strong>
+              <span>AI Accuracy Rate</span>
+           </div>
         </section>
 
         <section className="crisis-section" id="platform">

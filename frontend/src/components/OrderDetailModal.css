@@ -267,6 +267,14 @@
 .btn-print:hover { background: var(--bg-hover); }
 .btn-track:hover { opacity: 0.9; transform: translateY(-1px); }
 
+@media (max-width: 640px) {
+  .order-modal-overlay { padding: 0; }
+  .order-modal-content { height: 100vh; max-height: none; border-radius: 0; }
+  .order-modal-header { padding: 1rem 1.5rem; }
+  .order-modal-body { padding: 1.5rem; gap: 1.5rem; }
+  .order-modal-footer { padding: 1.5rem; flex-direction: column; }
+}
+
 @media print {
   .order-modal-overlay { background: white; padding: 0; }
   .btn-close-modal, .order-modal-footer { display: none; }

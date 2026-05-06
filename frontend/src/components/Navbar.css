@@ -23,7 +23,33 @@
   gap: clamp(1rem, 3vw, 2.5rem);
 }
 
-/* Brand */
+/* Brand Group */
+.navbar-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--primary);
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s ease;
+}
+
+.mobile-menu-toggle:active {
+  transform: scale(0.9);
+}
+
 .navbar-brand {
   font-family: 'Outfit', sans-serif;
   font-size: 1.75rem;
@@ -198,20 +224,26 @@
 
 /* ── Responsive ── */
 @media (max-width: 1200px) {
-  .navbar { padding: 0 2rem; }
+  .navbar { padding: 0 1.5rem; }
 }
 
 @media (max-width: 1024px) {
   .navbar-container { gap: 1rem; }
   .user-details-mini { display: none; }
-  .navbar-search-container { max-width: 280px; }
+  .navbar-search-container { max-width: 240px; }
 }
 
 @media (max-width: 860px) {
-  .navbar-links { display: none; }
+  .mobile-menu-toggle {
+    display: flex;
+  }
+  .navbar-links {
+    display: none;
+  }
 }
 
 @media (max-width: 640px) {
-  .navbar { padding: 0 1rem; }
+  .navbar { height: 70px; padding: 0 1rem; }
   .navbar-search-container { display: none; }
+  .navbar-brand { font-size: 1.5rem; }
 }

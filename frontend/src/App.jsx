@@ -47,6 +47,7 @@ function App() {
   const cartCount = cartItems.reduce((acc, item) => acc + item.qty, 0);
   const dispatch = useDispatch();
   const [isBotOpen, setIsBotOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const muiTheme = useMemo(
     () =>
@@ -97,11 +98,19 @@ function App() {
         <Navbar 
           onLogout={handleLogout} 
           cartCount={cartCount} 
+          isMobileMenuOpen={isMobileMenuOpen}
+          setIsMobileMenuOpen={setIsMobileMenuOpen}
         />
       )}
       
       <div className={`app-body-layout ${isAuthenticated ? 'with-sidebar' : ''}`}>
-        {isAuthenticated && <Sidebar onLogout={handleLogout} />}
+        {isAuthenticated && (
+          <Sidebar 
+            onLogout={handleLogout} 
+            isMobileMenuOpen={isMobileMenuOpen}
+            setIsMobileMenuOpen={setIsMobileMenuOpen}
+          />
+        )}
         
         <main className="main-content-view">
           <Suspense fallback={<PageLoader />}>
