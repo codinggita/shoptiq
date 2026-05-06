@@ -17,6 +17,10 @@
 
 ---
 
+<img width="1704" height="840" alt="image" src="https://github.com/user-attachments/assets/c7e2a2e5-d953-4ac7-b535-77363319e2b4" />
+<img width="1905" height="836" alt="Screenshot 2026-05-06 133954" src="https://github.com/user-attachments/assets/6b2e22d5-1c6f-48c0-b382-7181070a51b6" />
+<img width="1895" height="744" alt="image" src="https://github.com/user-attachments/assets/e3ef8a21-419f-488c-8bf7-015793f74198" />
+
 # 📌 Problem Statement
 
 Modern e-commerce platforms suffer from **three critical gaps** that negatively impact user trust and purchasing decisions:
